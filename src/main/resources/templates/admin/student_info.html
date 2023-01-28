@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Student Info</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" 
+integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+<body>
+
+<div th:replace="~{admin/navbar :: navbar}"></div>
+    <br/>
+     <div class="card-header text-center bg-info h5">
+     <b>Registration No: </b> <p th:text="${studentInfo.registrationNumber}" class="bg-light"></p>
+     <b>Name: </b> <p th:text="${studentInfo.firstName}" class="bg-light"></p>
+     <b>Semister: </b> <p th:text="${studentInfo.semister}" class="bg-light"></p>
+     <b>Branch: </b> <p th:text="${studentInfo.Branch}" class="bg-light"></p>
+     <b>Email: </b> <p th:text="${studentInfo.email}" class="bg-light"></p>
+     <b>Mobile: </b> <p th:text="${studentInfo.mobile}" class="bg-light"></p>
+      </div>
+      
+   <h3>Complaints:</h3>
+   <hr>
+
+ <div class="d-flex justify-content-center py-2" th:each="complaint: ${complaints}">
+        <div class="second py-2 px-2"> <strong class="text1" th:text="${complaint.complaint}"></strong>
+            <div class="d-flex justify-content-between py-1 pt-2">
+                <div><img src="https://i.imgur.com/tPvlEdq.jpg" width="18"><span class="text2" th:text="${#temporals.format(complaint.createdOn, 'dd MMM YYYY')}"></span></div>
+                <div><a class="btn btn-danger link-danger text3" th:href="@{/solve/{registrationNumber}/{complaintId} (registrationNumber = ${studentInfo.registrationNumber}, complaintId=${complaint.id})}">solve</a><span class="thumbup"><i class="fa fa-thumbs-o-up"></i></span><span class="text4"></span></div>
+            </div>
+             <hr>
+        </div>
+    </div>
+        
+
+</body>
+</html>

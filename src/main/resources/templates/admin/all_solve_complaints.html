@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>All Complaints</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" 
+integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+<body>
+
+<div th:replace="~{admin/navbar :: navbar}"></div>
+    <br/>
+      
+     <div>
+       <h2 class="text-center">Solve Complaints</h2>
+       
+       <table class="table table-sm" border="5">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Complaint</th>
+      <th scope="col">Complaint Solve Date</th>
+      <th scope="col">Student Registration No</th>
+      <th scope="col">Delete</th>
+    </tr>
+  </thead>
+  <tbody>
+    
+      <tr th:each="solve, com : ${solveComplaints}" class="table-primary">
+            <td><span th:text="${com.count}">  </span></td>
+            <td><span th:text="${solve.complaint}">  </span></td>
+            <td><span th:text="${#temporals.format(solve.createdOn, 'dd MMM yyyy')}"> </span></td>
+            <td><span th:text="${solve.student.registrationNumber}">  </span></td>
+            <td>
+              <a th:href="@{/deletesolvecomplaint/{id} (id=${solve.id})} " class="btn btn-danger h7 ">delete</a>
+            </td>
+        </tr>
+   
+  </tbody>
+</table>
+         
+     </div>
+
+</body>
+</html>
