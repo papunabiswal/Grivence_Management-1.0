@@ -1,0 +1,10 @@
+pipeline {
+    agent any
+    stages {
+        stage("Git Checkout") {
+            steps {
+                git branch: 'main', credentialsId: 'GitHub', url: 'https://github.com/papunabiswal/Grivence_Management-1.0.git'
+            }
+        }
+    }
+}
