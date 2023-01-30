@@ -1,9 +1,19 @@
 pipeline {
     agent any
+    tools {
+        maven "project-maven"
+    }
     stages {
         stage("Git Checkout") {
             steps {
                 git branch: 'main', credentialsId: 'GitHub', url: 'https://github.com/papunabiswal/Grivence_Management-1.0.git'
+            }
+        }
+        stage ("Maven Goal"){
+            steps {
+            script{
+            sh "mvn clean install package"
+            }
             }
         }
     }
